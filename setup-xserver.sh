@@ -2,7 +2,7 @@
 
 set -e
 
-sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit xserver-xorg-video-all
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends xserver-xorg x11-xserver-utils xinit xserver-xorg-video-all
 
 sudo adduser --disabled-password --gecos "" xuser
 sudo usermod -aG video,input,tty xuser
