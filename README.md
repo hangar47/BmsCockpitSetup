@@ -22,9 +22,11 @@ The old way, based on the standard Pi-OS with a complete desktop environment.
 ## BMSCockpit Setup
 
 ```bash
-apt install bmsdisplays
+sudo apt install bmsdisplays
 
 curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/bmsdisplays.service | sudo tee /etc/systemd/system/bmsdisplays.service
 
-sudo systemctl start xserver.service
+sudo systemctl enable bmsdisplays.service
+
+sudo systemctl start bmsdisplays.service
 ```
