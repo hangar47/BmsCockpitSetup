@@ -1,6 +1,7 @@
 ## Legacy Setup
 
-This setup is based on the preinstalled desktop environment in addition to some autostart config for the BMSCockpit binaries that should be started automatically.
+This setup is based on the pre-installed desktop environment of Pi-OS in addition to some autostart config for the BMSCockpit binaries that should be started automatically.
+
 The actual installation of the BMSCockpit binaries is not part of this document and is represented
 as `@BmsDisplays` here for the sake of descibing the integration. 
 
