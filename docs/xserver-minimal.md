@@ -1,6 +1,10 @@
 # Minimal Setup
 
-Install Raspberry-PI OS Lite with the imager
+This document describes the manual steps to be performed to add and configure a minimal X-Server on top of Pi-OS Lite. There is also a bash script available that performs these steps automatically.
+
+## Prerequisites
+
+Install Raspberry-PI OS **Lite** with the [Raspberry PI Imager](https://www.raspberrypi.com/software/)
 
 ## Create a user for running the X-Server
 
@@ -17,8 +21,6 @@ Enable auto login in `raspi-config`
 
 ```bash
 sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit xserver-xorg-video-all
-
-sudo apt install vim
 ```
 
 ## Configure GPU for the X-Server
