@@ -1,4 +1,4 @@
-## Legacy Setup
+# Legacy Setup
 
 This setup is based on the pre-installed desktop environment of Pi-OS in addition to some autostart config for the BMSCockpit binaries that should be started automatically.
 
@@ -12,6 +12,8 @@ Install Raspberry-PI OS with the [Raspberry PI Imager](https://www.raspberrypi.c
 ### Configure auto login for the user
 
 Enable auto login in `raspi-config`
+
+## Manual Setup
 
 ### Autostart
 

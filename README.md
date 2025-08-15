@@ -22,7 +22,7 @@ The recommended way, with a smaller footprint based on Pi-OS Lite.
 
 The legacy way, based on the standard Pi-OS with a complete desktop environment.
 
-## BMSCockpit Setup
+## BMSCockpit Basic Setup
 
 ```bash
 sudo apt install bmsdisplays
@@ -32,4 +32,18 @@ curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads
 sudo systemctl enable bms-displays.service
 
 sudo systemctl start bms-displays.service
+```
+
+## BMSCockpit Remote Management
+
+### Dependencies
+
+```bash
+# gpiozero seems to be pre-installed on a Raspberry Pi but anyways
+sudo apt install python3-pip
+sudo pip install gpiozero
+#or
+sudo apt install python3-gpiozero
+
+sudo apt-get install python3-psutil
 ```
