@@ -1,29 +1,39 @@
 # Minimal Setup
 
-This document describes the manual steps to be performed to add and configure a minimal X-Server on top of Pi-OS Lite. There is also a bash script available that performs these steps automatically.
+This document describes the manual steps necessary to add and configure a minimal X-Server on top of Pi-OS Lite.
 
 ## Prerequisites
 
 Install Raspberry-PI OS **Lite** with the [Raspberry PI Imager](https://www.raspberrypi.com/software/)
 
-## Create a user for running the X-Server
+### Configure auto login for the user
+
+Enable auto login in `raspi-config`
+
+## Scripted Setup
+
+There is a bash script available that performs these steps automatically.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/setup-xserver.sh | bash
+```
+
+## Manual Setup
+
+### Create a user for running the X-Server
 
 ```bash
 sudo adduser --disabled-password --gecos "" xuser
 sudo usermod -aG video,input,tty xuser
 ```
 
-## Configure auto login for the user
-
-Enable auto login in `raspi-config`
-
-## Install required packages
+### Install required packages
 
 ```bash
 sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit xserver-xorg-video-all
 ```
 
-## Configure GPU for the X-Server
+### Configure GPU for the X-Server
 
 ```bash
 sudo vi /etc/X11/xorg.conf.d/99-v3d.conf
@@ -38,7 +48,7 @@ Section "OutputClass"
 EndSection
 ```
 
-## Create the systemd-service for the X-Server
+### Create the systemd-service for the X-Server
 
 ```bash
 sudo vi /etc/systemd/system/xserver.service
@@ -69,13 +79,13 @@ RestartSec=3
 WantedBy=multi-user.target
 ```
 
-## Enable the systemd-service
+### Enable the systemd-service
 
 ```bash
 sudo systemctl enable xserver.service
 ```
 
-## Start/Stop the systemd-service
+### Start/Stop the systemd-service
 
 ```bash
 sudo systemctl start xserver.service

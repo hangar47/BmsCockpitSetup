@@ -7,8 +7,8 @@ sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit xs
 sudo adduser --disabled-password --gecos "" xuser
 sudo usermod -aG video,input,tty xuser
 
-cat 99-v3d.conf | sudo tee /etc/X11/xorg.conf.d/99-v3d.conf
-cat xserver.service | sudo tee /etc/systemd/system/xserver.service
+curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/99-v3d.conf | sudo tee /etc/X11/xorg.conf.d/99-v3d.conf
+curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/xserver.service | sudo tee /etc/systemd/system/xserver.service
 
 sudo systemctl enable xserver.service
 
