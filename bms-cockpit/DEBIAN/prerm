@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+# Stop service before removal
+if systemctl is-active --quiet xserver.service; then
+    systemctl stop xserver.service
+fi
+systemctl disable xserver.service || true

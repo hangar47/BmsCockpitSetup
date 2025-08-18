@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+# Create system user/group
+if ! id "bms-cockpit" &>/dev/null; then
+    adduser --system --group --no-create-home \
+            --home /nonexistent \
+            --shell /usr/sbin/nologin bms-cockpit
+fi
+
+# Ensure data directory exists and is writable by myapp
+mkdir -p /var/lib/bms-cockpit
+chown bms-cockpit:bms-cockpit /var/lib/bms-cockpit
+chmod 750 /var/lib/bms-cockpit
+
+# Reload systemd units & enable service
+systemctl daemon-reload
+systemctl enable xserver.service
+systemctl start xserver.service

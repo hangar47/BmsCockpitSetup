@@ -1,0 +1,9 @@
+Package: bms-cockpit
+Version: 0.3.1@VERSION@
+Section: utils
+Priority: optional
+Architecture: all
+Depends: adduser, systemd, xserver-xorg, x11-xserver-utils, xinit, xserver-xorg-video-all
+Maintainer: Christian Gebauer <mail@christiangebauer.de>
+Description: BMS Cockpit daemon
+ A tool to visualize Falcon BMS Cockpit instruments and displays on Raspberry Pi.
