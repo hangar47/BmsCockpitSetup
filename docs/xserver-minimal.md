@@ -10,21 +10,11 @@ Install Raspberry-PI OS **Lite** with the [Raspberry PI Imager](https://www.rasp
 
 Enable auto login in `raspi-config`
 
-## Scripted Setup
-
-There is a bash script available that performs these steps automatically.
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/setup-xserver.sh | bash
-```
-
-## Manual Setup
-
 ### Create a user for running the X-Server
 
 ```bash
-sudo adduser --disabled-password --gecos "" xuser
-sudo usermod -aG video,input,tty xuser
+sudo adduser --system --group --home /var/lib/bms-cockpit --shell /bin/bash bms-cockpit
+sudo usermod -aG video,input,tty bms-cockpit
 ```
 
 ### Install required packages
@@ -48,21 +38,41 @@ Section "OutputClass"
 EndSection
 ```
 
+### Turning off screen saver
+
+```bash
+sudo vi /etc/X11/xorg.conf.d/10-monitor.conf
+```
+
+```
+Section "Monitor"
+    Identifier "Monitor0"
+    Option "DPMS" "false"
+EndSection
+
+Section "ServerFlags"
+    Option "BlankTime" "0"
+    Option "StandbyTime" "0"
+    Option "SuspendTime" "0"
+    Option "OffTime" "0"
+EndSection
+```
+
 ### Create the systemd-service for the X-Server
 
 ```bash
-sudo vi /etc/systemd/system/xserver.service
+sudo vi /lib/systemd/system/xserver.service
 ```
 
 ```
 [Unit]
-Description=Minimal X server
+Description=BMS-Cockpit X-Server
 After=systemd-user-sessions.service getty@tty1.service
 Conflicts=getty@tty1.service
 
 [Service]
-User=xuser
-WorkingDirectory=/home/xuser
+User=bms-cockpit
+WorkingDirectory=/var/lib/bms-cockpit
 PAMName=login
 TTYPath=/dev/tty1
 TTYReset=yes

@@ -2,6 +2,12 @@
 
 Metapackage containing Raspberry PI System-Config and Documentation
 
+## Register the BMS-Cockpit Debian Repository
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/install-repo.sh | bash
+```
+
 ## X-Server Setup
 
 ### TL/DR
@@ -9,8 +15,10 @@ Metapackage containing Raspberry PI System-Config and Documentation
 This script executes the necessary steps to install and start an minimal X-Server automatically.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/setup-xserver.sh | bash
+apt install bms-cockpit
 ```
+
+Installs the `bms-cockpit` meta package with the basic setup of a minimal x-server and some additional ajustments.
 
 ### Step by Step description
 
@@ -22,19 +30,17 @@ The recommended way, with a smaller footprint based on Pi-OS Lite.
 
 The legacy way, based on the standard Pi-OS with a complete desktop environment.
 
-## BMSCockpit Basic Setup
+## BMS-Cockpit Basic Setup
 
 ```bash
-sudo apt install bmsdisplays
-
-curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/bmsdisplays.service | sudo tee /etc/systemd/system/bms-displays.service
-
-sudo systemctl enable bms-displays.service
-
-sudo systemctl start bms-displays.service
+sudo apt install bms-cockpit-displays
 ```
 
-## BMSCockpit Remote Management
+Installs the MFD export tool.
+
+This will automatically install the above mentioned meta-package with the x-server if is hasn't been already installed before.
+
+## BMS-Cockpit Remote Management
 
 ### Dependencies
 
