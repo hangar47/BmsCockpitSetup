@@ -5,7 +5,7 @@ Conflicts=getty@tty1.service
 
 [Service]
 User=bms-cockpit
-#WorkingDirectory=/home/bms-cockpit
+#WorkingDirectory=/var/lib/bms-cockpit
 PAMName=login
 TTYPath=/dev/tty1
 TTYReset=yes

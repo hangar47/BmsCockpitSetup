@@ -3,11 +3,9 @@ set -e
 
 # Remove system user only on purge
 if [ "$1" = "purge" ]; then
-#    deluser --system bms-cockpit || true
-    deluser bms-cockpit || true
+    deluser --system bms-cockpit || true
     rm -rf /var/lib/bms-cockpit || true
     rm -rf /etc/bms-cockpit || true
-    rm -rf /home/bms-cockpit || true
 fi 
 
 # Reload systemd if service file was removed
