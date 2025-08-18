@@ -25,4 +25,8 @@ systemctl daemon-reload
 systemctl enable xserver.service
 systemctl start xserver.service
 
+# Enable and start pigpiod service
+systemctl enable pigpiod
+systemctl start pigpiod
+
 exit 0
