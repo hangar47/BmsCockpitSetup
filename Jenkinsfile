@@ -1,5 +1,8 @@
 pipeline {
   agent  { label 'cloud-arm64' }
+  environment {
+    SNAPSHOT = '1' // Set to '1' for snapshot builds, otherwise set to '0'
+  }
   stages {
     stage('Create Package') {
       steps {
