@@ -30,19 +30,17 @@ pipeline {
 //         }
 //       }
       steps {
-        dir("build") {
-          sh '''
-            set -e
-            DEB_FILE=$(ls -1 *.deb | head -n1)
-            echo "Found package: $DEB_FILE"
-            sudo -u jenkins -H bash -lc '
-              aptly mirror update gtiremote
-              aptly repo import gtiremote gtirepo "Name (~ .*)"
-              aptly repo add gtirepo "'"$DEB_FILE"'"
-              aptly -passphrase-file=/home/jenkins/gpg_sec.txt publish update bookworm s3:gtirepo:
-            '
-          '''
-        }
+        sh '''
+          set -e
+          DEB_FILE=$(ls -1 *.deb | head -n1)
+          echo "Found package: $DEB_FILE"
+          sudo -u jenkins -H bash -lc '
+            aptly mirror update gtiremote
+            aptly repo import gtiremote gtirepo "Name (~ .*)"
+            aptly repo add gtirepo "'"$DEB_FILE"'"
+            aptly -passphrase-file=/home/jenkins/gpg_sec.txt publish update bookworm s3:gtirepo:
+          '
+        '''        
       }
     }
   }
