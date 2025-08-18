@@ -7,18 +7,18 @@ pipeline {
     stage('Create Package') {
       steps {
         dir("bms-cockpit") {
-          sh '''
-            if [ "$SNAPSHOT" = "1" ]; then
-                SNAP=$(date -u +%Y%m%dT%H%M%SZ)
-                GIT_SHA=$(git rev-parse --short HEAD 2>/dev/null || echo "nogit")
-                VERSION="~dev.${SNAP}.${GIT_SHA}"
-            else
-                VERSION=""
-            fi
-
-            sed "s/@VERSION@/${VERSION}/" DEBIAN/control.in > DEBIAN/control
-            chmod 755 DEBIAN/postinst DEBIAN/postrm DEBIAN/prerm
-          '''
+          script {
+            def version = ""
+            if (env.SNAPSHOT == '1') {
+              def snap = sh(script: "date -u +%Y%m%dT%H%M%SZ", returnStdout: true).trim()
+              def gitSha = sh(script: "git rev-parse --short HEAD 2>/dev/null || echo 'nogit'", returnStdout: true).trim()
+              version = "~dev.${snap}.${gitSha}"
+            }
+            sh """
+              sed "s/@VERSION@/${version}/" DEBIAN/control.in > DEBIAN/control
+              chmod 755 DEBIAN/postinst DEBIAN/postrm DEBIAN/prerm
+            """
+          }
         } 
         sh '''
           set -e
