@@ -9,10 +9,15 @@ if ! id "bms-cockpit" &>/dev/null; then
 #            bms-cockpit
 
     adduser --disabled-password --gecos "" \
-            --home /var/lib/bms-cockpit \
+#            --home /home/bms-cockpit \
             bms-cockpit
     usermod -aG video,input,tty bms-cockpit
 fi
+
+#sudo tee /etc/X11/Xwrapper.config >/dev/null <<'EOF'
+#allowed_users=anybody
+#needs_root_rights=yes
+#EOF
 
 # Reload systemd units & enable service
 systemctl daemon-reload

@@ -1,11 +1,11 @@
 [Unit]
-Description=Minimal X server
+Description=BMS Cockpit X-Server
 After=systemd-user-sessions.service getty@tty1.service
 Conflicts=getty@tty1.service
 
 [Service]
 User=bms-cockpit
-WorkingDirectory=/var/lib/bms-cockpit
+#WorkingDirectory=/home/bms-cockpit
 PAMName=login
 TTYPath=/dev/tty1
 TTYReset=yes
