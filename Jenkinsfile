@@ -22,7 +22,11 @@ pipeline {
         } 
         sh '''
           set -e
-          dpkg-deb --build bms-cockpit
+          PKG=$(grep '^Package:' bms-cockpit/DEBIAN/control | awk '{print $2}')
+          VER=$(grep '^Version:' bms-cockpit/DEBIAN/control | awk '{print $2}')
+          ARCH=$(grep '^Architecture:' bms-cockpit/DEBIAN/control | awk '{print $2}')
+
+          dpkg-deb --build bms-cockpit "${PKG}_${VER}_${ARCH}.deb"
         '''        
       }
     }
