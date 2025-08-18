@@ -25,8 +25,9 @@ pipeline {
           PKG=$(grep '^Package:' bms-cockpit/DEBIAN/control | awk '{print $2}')
           VER=$(grep '^Version:' bms-cockpit/DEBIAN/control | awk '{print $2}')
           ARCH=$(grep '^Architecture:' bms-cockpit/DEBIAN/control | awk '{print $2}')
-
-          dpkg-deb --build bms-cockpit "${PKG}_${VER}_${ARCH}.deb"
+          DEB_FILE="${PKG}_${VER}_${ARCH}.deb"
+          echo "Building package: $DEB_FILE"
+          dpkg-deb --build bms-cockpit "$DEB_FILE"
         '''        
       }
     }
