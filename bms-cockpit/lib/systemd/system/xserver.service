@@ -1,5 +1,5 @@
 [Unit]
-Description=BMS Cockpit X-Server
+Description=BMS-Cockpit X-Server
 After=systemd-user-sessions.service getty@tty1.service
 Conflicts=getty@tty1.service
 

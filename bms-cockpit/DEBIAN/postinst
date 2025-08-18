@@ -11,7 +11,18 @@ if ! id "bms-cockpit" &>/dev/null; then
     usermod -aG video,input,tty bms-cockpit
 fi
 
+# Ensure sudoers drop-in exists for bms-cockpit
+SUDOERS_FILE="/etc/sudoers.d/bms-cockpit"
+
+if [ ! -f "$SUDOERS_FILE" ]; then
+    echo "bms-cockpit ALL=(ALL) NOPASSWD: /sbin/reboot, /sbin/shutdown" > "$SUDOERS_FILE"
+    chmod 440 "$SUDOERS_FILE"
+    chown root:root "$SUDOERS_FILE"
+fi
+
 # Reload systemd units & enable service
 systemctl daemon-reload
 systemctl enable xserver.service
 systemctl start xserver.service
+
+exit 0

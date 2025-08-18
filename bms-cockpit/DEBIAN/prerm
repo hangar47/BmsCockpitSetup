@@ -6,3 +6,11 @@ if systemctl is-active --quiet xserver.service; then
     systemctl stop xserver.service
 fi
 systemctl disable xserver.service || true
+
+# Remove sudoers rule
+SUDOERS_FILE="/etc/sudoers.d/bms-cockpit"
+if [ -f "$SUDOERS_FILE" ]; then
+    rm -f "$SUDOERS_FILE"
+fi
+
+exit 0
