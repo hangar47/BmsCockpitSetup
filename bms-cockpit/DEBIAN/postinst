@@ -8,9 +8,13 @@ if ! id "bms-cockpit" &>/dev/null; then
 #            --shell /bin/bash \
 #            bms-cockpit
 
+#    adduser --disabled-password --gecos "" \
+#            --home /var/lib/bms-cockpit \
+#            bms-cockpit
+
     adduser --disabled-password --gecos "" \
-#            --home /home/bms-cockpit \
             bms-cockpit
+
     usermod -aG video,input,tty bms-cockpit
 fi
 
