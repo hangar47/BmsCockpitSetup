@@ -5,7 +5,7 @@ set -e
 if ! id "bms-cockpit" &>/dev/null; then
     adduser --system --group --no-create-home \
             --home /nonexistent \
-            --shell /usr/sbin/nologin bms-cockpit
+            --shell /bin/bash bms-cockpit
 fi
 
 # Ensure data directory exists and is writable by myapp
