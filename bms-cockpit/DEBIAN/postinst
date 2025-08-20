@@ -11,8 +11,10 @@ if ! id "bms-cockpit" &>/dev/null; then
     usermod -aG video,input,tty bms-cockpit
 fi
 
-# Reload systemd units & enable service
+# Reload systemd units
 systemctl daemon-reload
+
+# Enable and start xserver service
 systemctl enable xserver.service
 systemctl start xserver.service
 
