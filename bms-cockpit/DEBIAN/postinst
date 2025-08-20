@@ -16,10 +16,10 @@ systemctl daemon-reload || true
 
 # Enable and start xserver service
 systemctl enable xserver.service || true
-systemctl start xserver.service || true
+systemctl restart xserver.service || true
 
 # Enable and start pigpiod service
 systemctl enable pigpiod || true
-systemctl start pigpiod || true
+systemctl restart pigpiod || true
 
 exit 0
