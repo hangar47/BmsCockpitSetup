@@ -5,7 +5,7 @@ Metapackage containing Raspberry PI System-Config and Documentation
 ## Register the BMS-Cockpit Debian Repository
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/install-repo.sh | bash
+sudo curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads/main/install-repo.sh | bash
 ```
 
 ## X-Server Setup
@@ -13,7 +13,21 @@ curl -fsSL https://raw.githubusercontent.com/hangar47/BmsCockpitSetup/refs/heads
 Installs the `bms-cockpit` meta package with the basic setup of a minimal x-server and some additional ajustments.
 
 ```bash
-apt install bms-cockpit
+sudo apt install bms-cockpit
+```
+
+## TL/DR - All in One
+
+### Gauges
+
+```bash
+sudo apt install bms-cockpit-gauges bms-cockpit-control
+```
+
+### Displays
+
+```bash
+sudo apt install bms-cockpit-displays bms-cockpit-control
 ```
 
 ### Step by Step description
@@ -42,7 +56,13 @@ These will automatically install the above mentioned meta-package with the x-ser
 
 ## BMS-Cockpit Remote Management
 
-### Dependencies
+Installs the Remote Management Server.
+
+```bash
+sudo apt install bms-cockpit-control
+```
+
+### TBE: Dependencies
 
 ```bash
 # gpiozero seems to be pre-installed on a Raspberry Pi but anyways
