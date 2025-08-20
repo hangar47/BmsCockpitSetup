@@ -12,14 +12,14 @@ if ! id "bms-cockpit" &>/dev/null; then
 fi
 
 # Reload systemd units
-systemctl daemon-reload
+systemctl daemon-reload || true
 
 # Enable and start xserver service
-systemctl enable xserver.service
-systemctl start xserver.service
+systemctl enable xserver.service || true
+systemctl start xserver.service || true
 
 # Enable and start pigpiod service
-systemctl enable pigpiod
-systemctl start pigpiod
+systemctl enable pigpiod || true
+systemctl start pigpiod || true
 
 exit 0
