@@ -11,11 +11,6 @@ if ! id "bms-cockpit" &>/dev/null; then
     usermod -aG video,input,tty bms-cockpit
 fi
 
-# Ensure correct permissions for sudoers drop-in
-SUDOERS_FILE="/etc/sudoers.d/bms-cockpit"
-chmod 440 "$SUDOERS_FILE"
-chown root:root "$SUDOERS_FILE"
-
 # Reload systemd units & enable service
 systemctl daemon-reload
 systemctl enable xserver.service
