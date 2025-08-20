@@ -1,1 +1,0 @@
-bms-cockpit ALL=(ALL) NOPASSWD: /sbin/reboot, /sbin/shutdown, /usr/bin/apt-get
